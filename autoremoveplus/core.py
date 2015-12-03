@@ -61,7 +61,7 @@ DEFAULT_PREFS = {
     'filter2': 'func_added',
     'min2': 0.0,
     'hdd_space': -1.0,
-    'pause': False
+    'remove': True
 }
 
 
@@ -225,7 +225,7 @@ class Core(CorePluginBase):
         exemp_trackers = self.config['trackers']
         min_val = self.config['min']
         min_val2 = self.config['min2']
-        pause = self.config['pause']
+        remove = self.config['remove']
 
         # Negative max means unlimited seeds are allowed, so don't do anything
         if max_seeds < 0:
@@ -336,7 +336,7 @@ class Core(CorePluginBase):
                     filter_1,
                     filter_2
                 )):
-                    if pause:
+                    if not remove:
                         self.pause_torrent(t)
                     else:
                         if self.remove_torrent(torrentmanager, i, remove_data):
